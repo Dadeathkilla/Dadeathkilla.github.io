@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<title> JavaScript Practice </title>
+		<script>
+
+		var games = ["destiny", "cod", "freeze-tag", "apex legends"]
+
+		function joke(){
+			var q = prompt("What color is the sky?");
+			while(q != "blue"){
+				q = prompt("What color is the sky?");
+			}
+			alert("Goodjob");
+		}
+
+		function rate(){
+			var q = prompt("How much do you like JavaScript 1 - 10?");
+			if(q < 4){
+				alert("lame");
+			} else if(q < 7){
+				alert("nice!");
+			} else {
+				alert("cool");
+			}
+		}
+
+		function change(){
+			var edit = document.querySelector("#find");
+			edit.innerHTML="Nice, you found it.";
+
+		}
+
+		function start(){
+			var age = 15;
+			var name="Elijah";
+			alert(name + " is " + age);
+		}
+
+		function math(){
+			var calc= 3*4;
+			alert(calc);
+		}
+
+		function question(){
+			var question = prompt("what is my favorite color?  (hint: it starts with p and ends with e)");
+			if (question == "purple"){
+				alert("Correct");
+			} else{
+				alert("wrong");
+			}
+		}
+		var pass = 1;
+		function toggle(){
+			var twitch = document.querySelector("#rotate");
+			if (pass == 1){;
+			twitch.innerHTML = "What was that?";
+			pass = 2;
+			return;
+		}
+		else if(pass == 2){
+			twitch.innerHTML = "It was probably nothing";
+			pass = 3;
+			return;
+		} else{
+			twitch.innerHTML= "mustve been the wind";
+			pass = 1;
+			return;
+			}
+		}
+		function oddCounts(){
+		for(var i = 1; i < 10; i+=2){
+			alert(i);
+			}
+		} //end function oddCounts
+
+		var sentence = "running away from the dogs while they chase me because i stole the bone they were chewing on.";
+		var array = [];
+		for (var i = 0; i < sentence.length; i++){
+			if(sentence[i] == "e") {
+				array.push(sentence[i]);
+			}
+		}
+
+		var hamster = {color:"white & light brown", type:"roborovski", gender:"female"};
+		function ham(){
+			var ask = prompt("what would you like to know about my hamster? (color, gender, type)");
+			alert("my hamsters " +ask+  " is " + hamster[ask]);
+		}
+
+		function morph(){
+			var box = document.querySelector("#box")
+			box.style.backgroundColor = "red";
+			box.style.border = "30px solid black";
+			box.innerHTML = "Hi im a box";
+		}
+		</script>
+
+		<style>
+		#box{
+			background-color:purple;
+			width:600px;
+			height:500px;
+			color:white;
+			text-align:center;
+		}
+		</style>
+
+	</head>
+
+	<body>
+		<div>there are <script>document.write(array.length);</script> e's in "<script> document.write(sentence);</script>"</div>
+
+		<p> a game i like to play is <b><script>document.write(games[2])</script></b>.  </p>
+
+		<input onclick="morph()" type="button" value="box">
+
+		<div id="box"> This is a color changing box </div>
+
+		<div id="rotate"> Forgot to put text here. </div>
+
+		<div id="find"> Finding something One moment. </div>
+
+		<input onclick="question()" type="button" value="Color">
+
+		<input onclick="math()" type="button" value="Calculate">
+
+		<input onclick="start()" type="button" value="Alert Me">
+
+		<input onclick="rate()" type="button" value="rate js">
+
+		<input onclick="change()" type="button" value="edit">
+
+		<input onclick="toggle()" type="button" value="switch">
+
+		<input onclick="joke()" type="button" value="question">
+
+		<input onclick="oddCounts()" type="button" value="for loop">
+
+		<input onclick="ham()" type="button" value="hamster">
+	</body> 
+
+</html>

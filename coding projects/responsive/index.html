@@ -1,0 +1,233 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="stylesheet.css">
+		<title> name </title>
+
+		<script>// new script area
+
+		var array = [];
+
+		function validate(){
+		var name = document.querySelector("#name");
+
+		var title = document.querySelector("#title");
+
+		var textarea = document.querySelector("#textarea");
+
+		var bgColor = document.querySelector("#bgColor");
+
+		var textColor = document.querySelector("#textColor");
+
+		var radiobtns = document.querySelector("#radiobtns");
+
+		var icon = document.querySelectorAll("[name='icon']");
+
+		var message = document.querySelector("#message");
+
+
+		var radio_choice = false;
+		var blank_field = true;
+
+
+		if(name.value == ""){
+			name.style.border = "2px solid red";
+			blank_field = true;
+		} else {
+			name.style.border = "2px solid green";
+			blank_field = false;
+		}
+
+
+		if(title.value == ""){
+			title.style.border = "2px solid red";
+			blank_field = true;
+		} else {
+			title.style.border = "2px solid green";
+			blank_field = false;
+		}
+
+		if(textarea.value == ""){
+			textarea.style.border = "2px solid red";
+			blank_field = true;
+		} else {
+			textarea.style.border = "2px solid green";
+			blank_field = false;
+		}
+
+
+		if(textColor.value == "Choose a Color"){
+			textColor.style.border = "2px solid red";
+			blank_field = true;
+		} else {
+			textColor.style.border = "2px solid green";
+			blank_field = false;
+		}
+
+		if(bgColor.value == "Choose a background color"){
+			bgColor.style.border = "2px solid red";
+			blank_field = true;
+		} else {
+			bgColor.style.border = "2px solid green";
+			blank_field = false;
+		}
+
+		for(var i=0; i < icon.length; i++){
+			if(icon[i].checked == true){
+				radio_choice = true;
+				radiobtns.style.border = "none";
+				break;
+			} else {
+				radio_choice = false;
+				radiobtns.style.border = "2px solid red";
+			}
+		}
+
+		if(blank_field == false && radio_choice == true){
+			message.innerHTML = "";
+			save();
+		} else {
+			message.innerHTML = "<h3 style='color:red'>You Missed a Spot!</h3>";
+		}
+
+		} //end of function validate
+
+		function save(){
+			var name = document.querySelector("#name");
+			var title = document.querySelector("#title");
+			var textarea = document.querySelector("#textarea");
+			var icon = document.querySelectorAll("[name='icon']");
+			var icon_value;
+			var bgColor = document.querySelector("#bgColor");
+			var textColor = document.querySelector("#textColor");
+
+
+			for(var i=0; i< icon.length; i++){
+				if(icon[i].checked == true){
+					icon_value = icon[i].value;
+				}
+			}
+
+			var storage = {name: name.value, title: title.value, textarea: textarea.value, icon: icon.value, bgColor: bgColor.value, textColor: textColor.value};
+
+			array.push(storage);
+		
+			display();
+		} //end function save
+
+		function display(){
+			var show = document.querySelector("#show");
+			var post = "";
+				for(var i=0; i < array.length; i++){
+					post += "<div id='userComment' style='background-color:"+array[i].bgColor+"; "+"color:"+array[i].textColor+";'>";
+					post += "<img src='"+array[i].icon+"' class='icon' />";
+					post += "<strong> "+array[i].name+ "</strong><br>";
+					post += "<strong> "+array[i].title+ "</strong><br>";
+					post += "<strong>"+array[i].textarea+ "</strong><br>";
+					post += "<input type='checkbox' onclick='gone("+i+")'/>";
+				}
+			show.innerHTML = post;
+		}
+
+		function gone(index){
+			array.splice(index, 1);
+			display();
+		}
+
+
+		</script>
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<img id="logo" class="img-responsive" src="smiling.png"/> 
+				</div>
+
+
+				<div class="row">
+					<div class="col-sm-12" id="menu"> 
+						<nav class="navbar nav-dark bg-info navbar-expand"> 
+							<ul class="navbar-nav"> 
+					 			<li class="nav-item"> 
+					 				<a class="nav-link" href="#">Jevil</a> </li>
+					 			<li class="nav-item"> 
+					 				<a class="nav-link" href="#">Queen</a> </li>
+					 			<li class="nav-item"> 
+					 				<a class="nav-link" href="#">Spamton neo</a> </li>
+					 		</ul>
+					 	</nav> 
+					 </div>
+
+					
+					<div class="col-sm-12" id="comment"> COMMENTS
+					<div class="col-sm-12 col-md-5" id="form"> 
+						<header id="header">Leave a Comment</header>
+						<div id="message"></div>
+
+
+						<form class="form-inline"> 
+							<label> Name: </label> 
+							<input type="text" class="form-control" id="name" placeholder="Enter Name here!"> 
+							</input>
+
+
+							<label>COLOR:</label>
+							<select  id="textColor" class="form-control">
+								<option>Choose a Color</option>
+								<option> white</option>
+								<option> Purple</option>
+								<option> Red</option>
+								<option> Blue</option>
+								<option> yellow</option>
+							</select>
+						</form>
+
+						<form>
+							<label>Title:</label>
+							<input type="class" class="form-control" id="title" placeholder="Comment Title">
+
+							<label>Background Color</label>
+							<select id="bgColor" class="form-control">
+								<option>Choose a background color</option>
+								<option> Grey</option>
+								<option> black</option>
+								<option> Red</option>
+								<option> Blue</option>
+								<option> pink</option>
+							</select>
+						</form>
+
+						<form class="form-inline" id="radiobtns">
+							<label> Icons: </label>
+
+							<input type="radio" name="icon" value="img-responsive">
+							<img src="smiling.png" />
+
+							<input type="radio" name="icon" value="https://findicons.com/files/icons/1240/the_emperor_s_new_groove/128/meat_hut_lizard.png">
+							<img src="https://findicons.com/files/icons/1240/the_emperor_s_new_groove/128/meat_hut_lizard.png" class="icon">
+
+							<input type="radio" name="icon" value="pumpkin.png">
+							<img src="https://findicons.com/files/icons/404/helloween/128/pumpkin.png" class="icon">
+
+							<input type="radio" name="icon" value="donut_chart.png">
+							<img src="https://findicons.com/files/icons/2770/ios_7_icons/128/donut_chart.png" class="icon">
+
+						</form>
+
+						<br><label>Comment:</label><br>
+
+						<textarea id="textarea" class="form-control" rows+"8"></textarea>
+
+						<!--beginning of button area-->
+						<input onclick="validate()" type="button" value="submit comment">
+						<!--end of button area-->
+					<div id="show"></div>	
+					</div> <!-- end of form id-->
+					</div> <!--end of comment id-->
+				</div> <!-- end of row -->
+			</div> <!-- row end -->
+		</div> <!-- container end -->
+	</body>
+</html>
